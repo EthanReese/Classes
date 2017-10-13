@@ -4,12 +4,8 @@ using namespace std;
 
 class Media{
 	public:
-		Media(int,
+		int getType();
+	private:	
 		int year;
-		Char[] title;
-
-
-	private:
-
-
+		char[]* title;
 };

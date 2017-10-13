@@ -9,6 +9,12 @@
 #include <iomanip>
 #include <cstring>
 
+//Define the constants for the type of media
+#define UNDEFINED 0
+#define MOVIE 1
+#define MUSIC 2
+#define GAME 3
+
 using namespace std;
 
 int addMedia(vector<Media*> &media);
