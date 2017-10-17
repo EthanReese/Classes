@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <iostream>
 #include "Movie.h"
 
@@ -30,6 +31,7 @@ Movie::Movie(char[20]*  newtitle, char[20]* newdirector, int newyear, int newrat
 char[20]* Movie::getTitle(){
 	return title;
 }
+//Get the year of the movie
 int Movie::getYear(){
 	return year;
 }

@@ -8,6 +8,10 @@
 #include <cstdlib>
 #include <iomanip>
 #include <cstring>
+#include "Media.h"
+#include "Movie.h"
+#include "Game.h"
+#include "Music.h"
 
 //Define the constants for the type of media
 #define UNDEFINED 0
@@ -40,7 +44,7 @@ int main(){
 		toLowerCase(input);
 		//If the input is add then it needs to run that function
 		if (strcmp(input, add) == 0){
-			addMedia(media);
+			addMedia(media) == 1;
 		}
 		else if(strcmp(input, del) == 0){
 			deleteMedia(media);
@@ -66,4 +70,74 @@ void toLowerCase(char (&arr)[7]){
 	}
 
 }
+//Make new media
+int addMedia(vector<Media*> &media){
+	//Check with the user about what kind of media they want to add
+	cout << "What kind of media would you like to add (movie, music or game)?" << endl;
+	char input[7];
+	cin >> input;
+	//Take the input for all of the fields
+	if(strcmp(input, "movie") == 0){
+		//TODO: Maybe think about adding some try catches for the input
+		cout << "Title: ";
+		cin >> char* title;
+		cout << endl << "Year: ";
+		int year;
+		cin >> year;
+		cout << endl << "Rating: ";
+		int rating;
+		cin >> rating;
+		cout << endl << "Duration: ";
+		int duration;
+		cin >> duration;
+		cout << endl << "Director: ";
+		char* director;
+		cin >> director;
+		Movie *movie = new Movie(title, director, year, rating, duration);
+		media->push_back(movie);
+		cout << endl << "Movie Created.";
+		return 0;
+	}
+	//Take the input for all of the fields
+	else if(strcmp(input, "game") == 0){
+		//TODO: Maybe think about adding some try catches for the input
+		cout << "Title: ";
+		cin >> char* title;
+		cout << endl << "Year: ";
+		int year;
+		cin >> year;
+		cout << endl << "Rating: ";
+		int rating;
+		cin >> rating;
+		cout << endl << "Publisher: ";
+		char* publisher;
+		cin >> publisher;
+		Game *game = new Game(title, publisher, year, rating);
+		media->push_back(game);
+		cout << endl << "Game Created.";
+		return 0;
+	}
+	//Take the input for all of the fields
+	else if(strcmp(input, "music") == 0){
+		//TODO: Maybe think about adding some try catches for the input
+		cout << "Title: ";
+		cin >> char* title;
+		cout << "Artist: ";
+		char* artist;
+		cin >> artist;
+		cout << endl << "Year: ";
+		int year;
+		cin >> year;
+		cout << endl << "Duration: ";
+		int duration;
+		cin >> duration;
+		cout << endl << "Publisher: ";
+		char* publisher;
+		cin >> publisher;
+		Music *music = new Music(title, artist, publisher, duaration, year);
+		media->push_back(music);
+		cout << endl << "Music Created.";
+		return 0;
+	}
 
+}
