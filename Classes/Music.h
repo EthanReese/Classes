@@ -7,13 +7,13 @@ class Music: public Media{
 public:
 	int getType();
 	void printStuff();
-	Music(char[20]*, char[20]*, char*[20], int, int);
+	Music(char*, char*, char*, int, int);
 	int getYear();
-	char[20]* getTitle();
+	char* getTitle();
 private:
-	char* title[20];
+	char* title;
 	int year;
 	int duration;
-	char* publisher[20];
-	char* artist[20];
+	char* publisher;
+	char* artist;
 };

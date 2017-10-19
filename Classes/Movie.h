@@ -10,11 +10,11 @@ public:
 	void printStuff();
 	Movie(char*, char*,  int, int, int);
 	int getYear();
-	char[20]* getTitle();
+	char* getTitle();
 private:
-	char* title[20];
+	char* title;
 	int year;
 	int rating;
 	int duration;
-	char* director[20];
+	char* director;
 };

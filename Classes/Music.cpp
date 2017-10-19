@@ -19,7 +19,7 @@ void Music::printStuff(){
 	cout << endl << "Published by: " << publisher;
 }
 //Constructor
-Music::Music(char[20]*  newtitle, char[20]* newArtist, char[20]* newPublisher, int newDuration, int newYear){
+Music::Music(char*  newtitle, char* newArtist, char* newPublisher, int newDuration, int newYear){
 	title = newtitle;
 	artist = newArtist;
 	publisher = newPublisher;
@@ -27,7 +27,7 @@ Music::Music(char[20]*  newtitle, char[20]* newArtist, char[20]* newPublisher, i
 	duration = newDuration; 
 }
 //Get the title of the song
-char[20]* Music::getTitle(){
+char* Music::getTitle(){
 	return title;
 }
 //Get the year of the song

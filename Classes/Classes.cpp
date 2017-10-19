@@ -80,7 +80,8 @@ int addMedia(vector<Media*> &media){
 	if(strcmp(input, "movie") == 0){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
-		cin >> char* title;
+		char* title = new char[80];
+		cin >> setw(80) >> title;
 		cout << endl << "Year: ";
 		int year;
 		cin >> year;
@@ -91,8 +92,8 @@ int addMedia(vector<Media*> &media){
 		int duration;
 		cin >> duration;
 		cout << endl << "Director: ";
-		char* director;
-		cin >> director;
+		char* director = new char[80];
+		cin >> setw(80) >> director;
 		Movie *movie = new Movie(title, director, year, rating, duration);
 		media->push_back(movie);
 		cout << endl << "Movie Created.";
@@ -102,7 +103,8 @@ int addMedia(vector<Media*> &media){
 	else if(strcmp(input, "game") == 0){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
-		cin >> char* title;
+		char* title = new char[80];
+		cin >> setw(80) >> title;
 		cout << endl << "Year: ";
 		int year;
 		cin >> year;
@@ -110,8 +112,8 @@ int addMedia(vector<Media*> &media){
 		int rating;
 		cin >> rating;
 		cout << endl << "Publisher: ";
-		char* publisher;
-		cin >> publisher;
+		char* publisher = new char[80];
+		cin >> setw(80) >> publisher;
 		Game *game = new Game(title, publisher, year, rating);
 		media->push_back(game);
 		cout << endl << "Game Created.";
@@ -121,10 +123,11 @@ int addMedia(vector<Media*> &media){
 	else if(strcmp(input, "music") == 0){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
-		cin >> char* title;
+		char* title = new char[80];
+		cin >> setw(80) >> title;
 		cout << "Artist: ";
-		char* artist;
-		cin >> artist;
+		char* artist = new char[80];
+		cin >> setw(80) >> artist;
 		cout << endl << "Year: ";
 		int year;
 		cin >> year;
@@ -132,8 +135,8 @@ int addMedia(vector<Media*> &media){
 		int duration;
 		cin >> duration;
 		cout << endl << "Publisher: ";
-		char* publisher;
-		cin >> publisher;
+		char* publisher = new char[80];
+		cin >> setw(80) >> publisher;
 		Music *music = new Music(title, artist, publisher, duaration, year);
 		media->push_back(music);
 		cout << endl << "Music Created.";

@@ -18,7 +18,7 @@ void Game::printStuff(){
 }
 
 //Return the title of the game
-char[20]* Game::getTitle(){
+char* Game::getTitle(){
 	return title;
 }
 
@@ -28,7 +28,7 @@ int Game::getYear(){
 }
 
 //Constructor
-Game::Game(char[20]* nTitle, char[20]* nPublisher, int nYear, int nRating){
+Game::Game(char* nTitle, char* nPublisher, int nYear, int nRating){
 	title = nTitle;
 	publisher = nPublisher;
 	rating = nRating;

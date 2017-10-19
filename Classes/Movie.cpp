@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "Movie.h"
+#include <cstring>
 
 
 using namespace std;
@@ -19,8 +20,9 @@ void Movie::printStuff(){
 	cout << endl << "Directed by: " << director;
 }
 //Constructor
-Movie::Movie(char newtitle[20]*, char newdirector[20]*, int newyear, int newrating, int newduration){
-	title = newtitle;
+Movie::Movie(char* newtitle, char* newdirector, int newyear, int newrating, int newduration){
+	title = new char[80];
+	strcat(title, newtitle);
 	director = newdirector;
 	year = newyear;
 	rating = newrating;
