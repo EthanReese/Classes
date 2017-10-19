@@ -7,5 +7,4 @@ class Media{
 		int getType();
 	private:	
 		int year;
-		char[]* title;
 };

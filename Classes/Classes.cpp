@@ -23,7 +23,7 @@ using namespace std;
 
 int addMedia(vector<Media*> &media);
 void toLowerCase(char (&arr)[7]);
-void searchMeia(vector<Media*> &media);
+void searchMedia(vector<Media*> &media);
 void deleteMedia(vector<Media*> &media);
 
 

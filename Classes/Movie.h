@@ -1,4 +1,5 @@
 #include <iostream>
+#include "media.h"
 
 using namespace std;
 
@@ -7,13 +8,13 @@ class Movie: public Media{
 public:
 	int getType();
 	void printStuff();
-	Movie(char[20]*, char[20]*,  int, int, int);
+	Movie(char*, char*,  int, int, int);
 	int getYear();
 	char[20]* getTitle();
 private:
-	char[20]* title;
+	char* title[20];
 	int year;
 	int rating;
 	int duration;
-	char[20]* director;
+	char* director[20];
 };

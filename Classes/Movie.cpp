@@ -7,7 +7,6 @@ using namespace std;
 
 //Return that it is a movie
 int Movie::getType(){
-
 	return 1;
 }
 
@@ -20,7 +19,7 @@ void Movie::printStuff(){
 	cout << endl << "Directed by: " << director;
 }
 //Constructor
-Movie::Movie(char[20]*  newtitle, char[20]* newdirector, int newyear, int newrating, int newduration){
+Movie::Movie(char newtitle[20]*, char newdirector[20]*, int newyear, int newrating, int newduration){
 	title = newtitle;
 	director = newdirector;
 	year = newyear;
@@ -28,7 +27,7 @@ Movie::Movie(char[20]*  newtitle, char[20]* newdirector, int newyear, int newrat
 	duration = newduration; 
 }
 //Get the title of the movie
-char[20]* Movie::getTitle(){
+char* Movie::getTitle(){
 	return title;
 }
 //Get the year of the movie

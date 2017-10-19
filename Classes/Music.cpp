@@ -24,7 +24,7 @@ Music::Music(char[20]*  newtitle, char[20]* newArtist, char[20]* newPublisher, i
 	artist = newArtist;
 	publisher = newPublisher;
 	year = newYear;
-	duration = newduration; 
+	duration = newDuration; 
 }
 //Get the title of the song
 char[20]* Music::getTitle(){
