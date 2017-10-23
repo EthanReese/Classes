@@ -7,12 +7,12 @@ class Game: public Media{
 public:
 	int getType();
 	void printStuff();
-	char[20]* getTitle();
+	char* getTitle();
 	int getYear();
-	Game(*char[20], *char[20], int, int);
+	Game(*char, *char, int, int);
 private:
-	char[20]* title;
-	char[20]* publisher;
+	char* title;
+	char* publisher;
 	int year;
 	int rating;
-}
+};

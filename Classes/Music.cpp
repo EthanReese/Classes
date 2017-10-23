@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "Music.h"
+#include <cstring>
 
 
 using namespace std;
@@ -20,9 +21,12 @@ void Music::printStuff(){
 }
 //Constructor
 Music::Music(char*  newtitle, char* newArtist, char* newPublisher, int newDuration, int newYear){
-	title = newtitle;
-	artist = newArtist;
-	publisher = newPublisher;
+	title = new char[80];
+     strcpy(title, newtitle);
+     artist = new char[80];
+	strcpy(artist, newArtist);
+     publisher = new char[80];
+	strcpy(publisher, newPublisher);
 	year = newYear;
 	duration = newDuration; 
 }

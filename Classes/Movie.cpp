@@ -22,8 +22,9 @@ void Movie::printStuff(){
 //Constructor
 Movie::Movie(char* newtitle, char* newdirector, int newyear, int newrating, int newduration){
 	title = new char[80];
-	strcat(title, newtitle);
-	director = newdirector;
+     strcpy(title, newtitle);
+     director = new char[80];
+	strcpy(director, newdirector);
 	year = newyear;
 	rating = newrating;
 	duration = newduration; 

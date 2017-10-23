@@ -95,7 +95,7 @@ int addMedia(vector<Media*> &media){
 		char* director = new char[80];
 		cin >> setw(80) >> director;
 		Movie *movie = new Movie(title, director, year, rating, duration);
-		media->push_back(movie);
+		media.push_back(movie);
 		cout << endl << "Movie Created.";
 		return 0;
 	}
@@ -115,7 +115,7 @@ int addMedia(vector<Media*> &media){
 		char* publisher = new char[80];
 		cin >> setw(80) >> publisher;
 		Game *game = new Game(title, publisher, year, rating);
-		media->push_back(game);
+		media.push_back(game);
 		cout << endl << "Game Created.";
 		return 0;
 	}
@@ -138,7 +138,7 @@ int addMedia(vector<Media*> &media){
 		char* publisher = new char[80];
 		cin >> setw(80) >> publisher;
 		Music *music = new Music(title, artist, publisher, duaration, year);
-		media->push_back(music);
+		media.push_back(music);
 		cout << endl << "Music Created.";
 		return 0;
 	}

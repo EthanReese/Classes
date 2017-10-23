@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include <cstdlib>
+#include <cstring>
 
 using namespace std;
 
@@ -29,8 +30,10 @@ int Game::getYear(){
 
 //Constructor
 Game::Game(char* nTitle, char* nPublisher, int nYear, int nRating){
-	title = nTitle;
-	publisher = nPublisher;
+	title = new char[80];
+     strcpy(title, nTitle);
+     publisher = new char[80];
+	strcpy(publisher, nPublisher);
 	rating = nRating;
 	year = nYear
 }
