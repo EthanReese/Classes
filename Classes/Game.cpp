@@ -35,5 +35,5 @@ Game::Game(char* nTitle, char* nPublisher, int nYear, int nRating){
      publisher = new char[80];
 	strcpy(publisher, nPublisher);
 	rating = nRating;
-	year = nYear
+	year = nYear;
 }

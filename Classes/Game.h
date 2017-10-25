@@ -9,7 +9,7 @@ public:
 	void printStuff();
 	char* getTitle();
 	int getYear();
-	Game(*char, *char, int, int);
+	Game(char*, char*, int, int);
 private:
 	char* title;
 	char* publisher;

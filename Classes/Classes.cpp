@@ -23,13 +23,13 @@ using namespace std;
 
 int addMedia(vector<Media*> &media);
 void toLowerCase(char (&arr)[7]);
-void searchMedia(vector<Media*> &media);
-void deleteMedia(vector<Media*> &media);
+int searchMedia(vector<Media*> &media);
+//void deleteMedia(vector<Media*> &media);
 
 
 int main(){
 	//Create the master vector of media pointers
-	vector<Media*> &media;
+	vector<Media*> media;
 	//Make character arrays that define the command words
 	char add[7] = "add";
 	char search[7] = "search";
@@ -44,10 +44,11 @@ int main(){
 		toLowerCase(input);
 		//If the input is add then it needs to run that function
 		if (strcmp(input, add) == 0){
-			addMedia(media) == 1;
+               //I could probably make a way with a while loop to make sure that the input is correct
+			addMedia(media);
 		}
 		else if(strcmp(input, del) == 0){
-			deleteMedia(media);
+			//deleteMedia(media);
 		}
 		else if(strcmp(input, search) == 0){
 			searchMedia(media);
@@ -59,6 +60,7 @@ int main(){
 			cout << "Invalid input, please pick one of the command words";
 		}
 	}
+     return 1;
 
 }
 
@@ -76,27 +78,33 @@ int addMedia(vector<Media*> &media){
 	cout << "What kind of media would you like to add (movie, music or game)?" << endl;
 	char input[7];
 	cin >> input;
+     //Make the input lowercase
+     toLowerCase(input);
 	//Take the input for all of the fields
 	if(strcmp(input, "movie") == 0){
 		//TODO: Maybe think about adding some try catches for the input
-		cout << "Title: ";
+          cout << "Title: ";
 		char* title = new char[80];
-		cin >> setw(80) >> title;
-		cout << endl << "Year: ";
+		cin.getline(title, 80);
+          cin.ignore(1000, '\n');
+		cout << "Year: ";
 		int year;
 		cin >> year;
-		cout << endl << "Rating: ";
+          cin.ignore();
+		cout << "Rating: ";
 		int rating;
 		cin >> rating;
-		cout << endl << "Duration: ";
+          cin.ignore();
+		cout << "Duration: ";
 		int duration;
 		cin >> duration;
-		cout << endl << "Director: ";
+          cin.ignore();
+		cout << "Director: ";
 		char* director = new char[80];
-		cin >> setw(80) >> director;
+		cin.getline(director, 80);
 		Movie *movie = new Movie(title, director, year, rating, duration);
 		media.push_back(movie);
-		cout << endl << "Movie Created.";
+		cout << "Movie Created." << endl;
 		return 0;
 	}
 	//Take the input for all of the fields
@@ -104,19 +112,23 @@ int addMedia(vector<Media*> &media){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
 		char* title = new char[80];
-		cin >> setw(80) >> title;
-		cout << endl << "Year: ";
+		cin.getline(title, 80);
+          //Ignore the newline character bc that can mess some stuff up
+          cin.ignore(1000, '\n');
+		cout << "Year: ";
 		int year;
 		cin >> year;
-		cout << endl << "Rating: ";
+          cin.ignore();
+		cout << "Rating: ";
 		int rating;
 		cin >> rating;
-		cout << endl << "Publisher: ";
+          cin.ignore();
+		cout << "Publisher: ";
 		char* publisher = new char[80];
-		cin >> setw(80) >> publisher;
+		cin.getline(publisher, 80);
 		Game *game = new Game(title, publisher, year, rating);
 		media.push_back(game);
-		cout << endl << "Game Created.";
+		cout << "Game Created." << endl;
 		return 0;
 	}
 	//Take the input for all of the fields
@@ -124,23 +136,76 @@ int addMedia(vector<Media*> &media){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
 		char* title = new char[80];
-		cin >> setw(80) >> title;
+		cin.getline(title, 80);
+          //Take the newline character out of the buffer
+          cin.ignore(1000, '\n');
 		cout << "Artist: ";
 		char* artist = new char[80];
-		cin >> setw(80) >> artist;
-		cout << endl << "Year: ";
+		cin.getline(artist, 80); 
+		cout << "Year: ";
 		int year;
 		cin >> year;
-		cout << endl << "Duration: ";
+          cin.ignore();
+		cout << "Duration: ";
 		int duration;
 		cin >> duration;
-		cout << endl << "Publisher: ";
+          cin.ignore();
+		cout << "Publisher: ";
 		char* publisher = new char[80];
-		cin >> setw(80) >> publisher;
-		Music *music = new Music(title, artist, publisher, duaration, year);
+		cin.getline(publisher, 80);
+		Music *music = new Music(title, artist, publisher, duration, year);
 		media.push_back(music);
-		cout << endl << "Music Created.";
+		cout << "Music Created." << endl;
 		return 0;
 	}
+     cout << "That's not a type of input";
+     return 1;
+
+}
+int searchMedia(vector<Media*> &media){
+     //Get input on whether they want to search by the year or by the title of the media     
+     cout << "Would you like to search by the year or the title?"
+     char input[10];
+     cin >> input;
+     toLowerCase(input);
+     //Year sequence
+     if(strcmp(input, "year") == 0){
+          cout << "What year do you want to search for?";
+          int year;
+          cin >> year;
+          int test = 0;
+          //Loop over all the items in the media vector and check their year to see if they should be printed out
+          for(int i = 0; i < media.size(); i++){
+               //If the media is the right year then it needs to print out the media that it found there
+               if(media.at(i)->getYear() == year){
+                    media.at(i)->printStuff;
+                    int test = 1;
+               }
+          }
+          //If there still aren't any results then it needs to communicate that
+          if(test = 0){
+               cout << "No results found";
+          }
+          return 0;
+     }
+     //Title Sequence
+     else if(strcmp(input, "title") == 0){
+
+
+
+     }
+     cout << "Please enter either title or year"
+     return 1;
+     
+
+     //Loop over the media list
+     for(int i = 0; i < media.size(); ++i){
+
+
+
+     }
+
+
+
 
 }
