@@ -38,7 +38,7 @@ int main(){
 	//Loop through infinitely until the user decides it is time to quit
 	while(true){
 		//Prompt the user to put in a command
-		cout << "Please enter one of the command words: Add, Print, Delete, or Quit: ";
+		cout << "Please enter one of the command words: Add, Search, Delete, or Quit: ";
 		char input[7];
 		cin >> input;
 		toLowerCase(input);
@@ -105,6 +105,7 @@ int addMedia(vector<Media*> &media){
 		Movie *movie = new Movie(title, director, year, rating, duration);
 		media.push_back(movie);
 		cout << "Movie Created." << endl;
+          cout << movie->getTitle();
 		return 0;
 	}
 	//Take the input for all of the fields
@@ -164,48 +165,55 @@ int addMedia(vector<Media*> &media){
 }
 int searchMedia(vector<Media*> &media){
      //Get input on whether they want to search by the year or by the title of the media     
-     cout << "Would you like to search by the year or the title?"
-     char input[10];
+     cout << "Would you like to search by the year or the title? ";
+     char input[7];
      cin >> input;
+     cin.ignore(1000, '\n');
      toLowerCase(input);
+     int test = 0;
      //Year sequence
      if(strcmp(input, "year") == 0){
           cout << "What year do you want to search for?";
           int year;
           cin >> year;
-          int test = 0;
+          test = 0;
           //Loop over all the items in the media vector and check their year to see if they should be printed out
           for(int i = 0; i < media.size(); i++){
+               cout << "Looping";
+               cout << media.at(i)->getYear();
                //If the media is the right year then it needs to print out the media that it found there
                if(media.at(i)->getYear() == year){
-                    media.at(i)->printStuff;
+                    media.at(i)->printStuff();
                     int test = 1;
+                    cout << "Hello";
                }
           }
           //If there still aren't any results then it needs to communicate that
-          if(test = 0){
+          if(test == 0){
                cout << "No results found";
           }
           return 0;
      }
      //Title Sequence
      else if(strcmp(input, "title") == 0){
-
-
-
+          cout << "What title do you want to search for? "<< endl;
+          char* titleIn = new char[80];
+          cin.getline(titleIn, 80);
+          cout << media.at(0)->getTitle() << endl; 
+          //Loop over all the items in the media vector and check their title to see if they should be printed out
+          for(vector<Media*>::iterator it = media.begin(); it != media.end(); ++it){
+               //If the media has the right title then it needs to be printed out
+               cout << (*it)->getTitle() << endl;
+               if(strcmp(titleIn, (*it)->getTitle()) == 0){ 
+                         (*it)->printStuff();
+               }
+          }
+          //If there still aren't any results then it needs to communicate that
+          if(test == 0){
+               cout << "No results found";
+          }
+          return 0;
      }
-     cout << "Please enter either title or year"
+     cout << "Please enter either title or year";
      return 1;
-     
-
-     //Loop over the media list
-     for(int i = 0; i < media.size(); ++i){
-
-
-
-     }
-
-
-
-
 }

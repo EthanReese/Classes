@@ -7,3 +7,12 @@ using namespace std;
 int Media::getType(){
 	return 0;
 }
+int Media::getYear(){
+     return year;
+}
+char* Media::getTitle(){
+     return title;
+}
+void Media::printStuff(){
+     cout << "Why is this running?";
+}

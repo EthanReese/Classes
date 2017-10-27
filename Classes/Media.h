@@ -7,9 +7,13 @@ using namespace std;
 
 class Media{
 	public:
-		int getType();
+		virtual int getType();
+          virtual void printStuff();
+          virtual char* getTitle();
+          virtual int getYear();
 	private:	
 		int year;
+          char* title;
 };
 
 #endif
