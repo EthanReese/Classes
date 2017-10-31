@@ -11,6 +11,7 @@ class Movie: public Media{
      	Movie(char*, char*,  int, int, int);
      	int getYear();
      	char* getTitle();
+          ~Movie();
      private:
      	char* title;
      	int year;

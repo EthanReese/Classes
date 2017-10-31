@@ -16,3 +16,6 @@ char* Media::getTitle(){
 void Media::printStuff(){
      cout << "Why is this running?";
 }
+Media::~Media(){
+
+}

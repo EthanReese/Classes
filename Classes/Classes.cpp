@@ -24,7 +24,7 @@ using namespace std;
 int addMedia(vector<Media*> &media);
 void toLowerCase(char (&arr)[7]);
 int searchMedia(vector<Media*> &media);
-//void deleteMedia(vector<Media*> &media);
+void deleteMedia(vector<Media*> &media);
 
 
 int main(){
@@ -48,7 +48,7 @@ int main(){
 			addMedia(media);
 		}
 		else if(strcmp(input, del) == 0){
-			//deleteMedia(media);
+			deleteMedia(media);
 		}
 		else if(strcmp(input, search) == 0){
 			searchMedia(media);
@@ -85,8 +85,8 @@ int addMedia(vector<Media*> &media){
 		//TODO: Maybe think about adding some try catches for the input
           cout << "Title: ";
 		char* title = new char[80];
+          cin.ignore();
 		cin.getline(title, 80);
-          cin.ignore(1000, '\n');
 		cout << "Year: ";
 		int year;
 		cin >> year;
@@ -104,8 +104,9 @@ int addMedia(vector<Media*> &media){
 		cin.getline(director, 80);
 		Movie *movie = new Movie(title, director, year, rating, duration);
 		media.push_back(movie);
+          delete[] title;
+          delete[] director;
 		cout << "Movie Created." << endl;
-          cout << movie->getTitle();
 		return 0;
 	}
 	//Take the input for all of the fields
@@ -113,9 +114,8 @@ int addMedia(vector<Media*> &media){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
 		char* title = new char[80];
+          cin.ignore();
 		cin.getline(title, 80);
-          //Ignore the newline character bc that can mess some stuff up
-          cin.ignore(1000, '\n');
 		cout << "Year: ";
 		int year;
 		cin >> year;
@@ -129,6 +129,8 @@ int addMedia(vector<Media*> &media){
 		cin.getline(publisher, 80);
 		Game *game = new Game(title, publisher, year, rating);
 		media.push_back(game);
+          delete[] publisher;
+          delete[] title;
 		cout << "Game Created." << endl;
 		return 0;
 	}
@@ -137,9 +139,8 @@ int addMedia(vector<Media*> &media){
 		//TODO: Maybe think about adding some try catches for the input
 		cout << "Title: ";
 		char* title = new char[80];
+          cin.ignore();
 		cin.getline(title, 80);
-          //Take the newline character out of the buffer
-          cin.ignore(1000, '\n');
 		cout << "Artist: ";
 		char* artist = new char[80];
 		cin.getline(artist, 80); 
@@ -157,6 +158,9 @@ int addMedia(vector<Media*> &media){
 		Music *music = new Music(title, artist, publisher, duration, year);
 		media.push_back(music);
 		cout << "Music Created." << endl;
+          delete[] publisher;
+          delete[] artist;
+          delete[] title;
 		return 0;
 	}
      cout << "That's not a type of input";
@@ -176,21 +180,18 @@ int searchMedia(vector<Media*> &media){
           cout << "What year do you want to search for?";
           int year;
           cin >> year;
-          test = 0;
           //Loop over all the items in the media vector and check their year to see if they should be printed out
           for(int i = 0; i < media.size(); i++){
-               cout << "Looping";
-               cout << media.at(i)->getYear();
                //If the media is the right year then it needs to print out the media that it found there
                if(media.at(i)->getYear() == year){
                     media.at(i)->printStuff();
-                    int test = 1;
-                    cout << "Hello";
+                    cout << endl;
+                    test = 1;
                }
           }
           //If there still aren't any results then it needs to communicate that
           if(test == 0){
-               cout << "No results found";
+               cout << "No results found" << endl;
           }
           return 0;
      }
@@ -198,22 +199,100 @@ int searchMedia(vector<Media*> &media){
      else if(strcmp(input, "title") == 0){
           cout << "What title do you want to search for? "<< endl;
           char* titleIn = new char[80];
-          cin.getline(titleIn, 80);
-          cout << media.at(0)->getTitle() << endl; 
+          cin.getline(titleIn, 80); 
           //Loop over all the items in the media vector and check their title to see if they should be printed out
           for(vector<Media*>::iterator it = media.begin(); it != media.end(); ++it){
                //If the media has the right title then it needs to be printed out
-               cout << (*it)->getTitle() << endl;
                if(strcmp(titleIn, (*it)->getTitle()) == 0){ 
                          (*it)->printStuff();
+                         cout << endl;
+                         test = 1;
                }
           }
           //If there still aren't any results then it needs to communicate that
           if(test == 0){
-               cout << "No results found";
+               cout << "No results found" << endl;
           }
+          delete[] titleIn;
           return 0;
      }
      cout << "Please enter either title or year";
      return 1;
+}
+//Function to delete a media item from the library
+void deleteMedia(vector<Media*> &media){ 
+     //Get input on whether they want to search by the year or by the title of the media     
+     cout << "Would you like to find titles to delete by the year or the title? ";
+     char input[7];
+     cin >> input;
+     cin.ignore(1000, '\n');
+     toLowerCase(input);
+     int test = 0;
+     int counter = 0;
+     //Year sequence
+     if(strcmp(input, "year") == 0){
+          cout << "What year do you want to delete by?";
+          int year;
+          cin >> year;
+          //Loop over all the items in the media vector and check their year to see if they should be printed out
+          for(int i = 0; i < media.size(); i++){
+               //If the media is the right year then it needs to print out the media that it found there
+               if(media.at(i)->getYear() == year){
+                    media.at(i)->printStuff();
+                    //Confirm that the user would actually like to delete the media.
+                    cout << "Would you like to delete this item(y/n)?";
+                    char checker;
+                    cin >> checker;
+                    if(tolower(checker)== 'y'){
+                         cout << "Working";
+                         //Delete the object and release the memory.
+                         delete media.at(i);
+                         media.erase(media.begin() +i);
+                    }
+                    cout << endl;
+                    test = 1;
+               }
+          }
+          //If there still aren't any results then it needs to communicate that
+          if(test == 0){
+               cout << "No results found" << endl;
+               return;
+          }
+          return;
+     }
+     //Title Sequence
+     else if(strcmp(input, "title") == 0){
+          cout << "What title do you want to search for? "<< endl;
+          char* titleIn = new char[80];
+          cin.getline(titleIn, 80); 
+          //Loop over all the items in the media vector and check their title to see if they should be printed out 
+          for(int i = 0; i < media.size(); i++){
+               //If the media is the right year then it needs to print out the media that it found there
+               if(strcmp(media.at(i)->getTitle(), titleIn) == 0){
+                    media.at(i)->printStuff();
+                    //Confirm that the user would actually like to delete the media.
+                    cout << endl << "Would you like to delete this item(y/n)?";
+                    char checker;
+                    cin >> checker;
+                    if(tolower(checker)== 'y'){
+                         //Delete the object and release the memory.
+                         delete media.at(i);
+                         media.erase(media.begin() +i);
+                    }
+                    cout << endl;
+                    test = 1;
+               }
+          }
+          //If there still aren't any results then it needs to communicate that
+          if(test == 0){
+               cout << "No results found" << endl;
+          }
+          delete[] titleIn;
+          return;
+     }
+     cout << "Please enter either title or year";
+     return;
+
+
+
 }

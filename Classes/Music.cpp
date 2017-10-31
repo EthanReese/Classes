@@ -38,3 +38,9 @@ char* Music::getTitle(){
 int Music::getYear(){
 	return year;
 }
+//Deconstructor
+Music::~Music(){
+     delete title;
+     delete artist;
+     delete publisher;
+}

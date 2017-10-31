@@ -10,6 +10,7 @@ public:
 	Music(char*, char*, char*, int, int);
 	int getYear();
 	char* getTitle();
+     ~Music();
 private:
 	char* title;
 	int year;

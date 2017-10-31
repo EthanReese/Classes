@@ -10,6 +10,7 @@ public:
 	char* getTitle();
 	int getYear();
 	Game(char*, char*, int, int);
+     ~Game();
 private:
 	char* title;
 	char* publisher;

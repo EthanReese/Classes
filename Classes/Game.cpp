@@ -37,3 +37,9 @@ Game::Game(char* nTitle, char* nPublisher, int nYear, int nRating){
 	rating = nRating;
 	year = nYear;
 }
+//Deconstructor
+Game::~Game(){
+     delete title;
+     delete publisher;
+
+}

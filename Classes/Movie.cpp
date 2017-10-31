@@ -22,9 +22,9 @@ void Movie::printStuff(){
 //Constructor
 Movie::Movie(char* newtitle, char* newdirector, int newyear, int newrating, int newduration){
 	title = new char[80];
-     strcpy(newtitle, title);
+     strcpy(title, newtitle);
      director = new char[80];
-	strcpy(newdirector, director);
+	strcpy(director, newdirector);
 	year = newyear;
 	rating = newrating;
 	duration = newduration; 
@@ -36,4 +36,9 @@ char* Movie::getTitle(){
 //Get the year of the movie
 int Movie::getYear(){
 	return year;
+}
+//Deconstructor
+Movie::~Movie(){
+     delete title;
+     delete director;
 }
